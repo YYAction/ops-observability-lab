@@ -1,0 +1,22 @@
+   services:
+     log-generator:
+       build: .
+       command: python log_generator.py
+       volumes:
+         - shared-logs:/app/sample-logs
+
+
+
+     log-exporter:
+       build: .
+       command: python log_scan_exporter.py
+       ports:
+         - "8000:8000"
+       volumes:
+         - shared-logs:/app/sample-logs
+       environment:
+         - LOG_PATH=/app/sample-logs
+         - LOG_PATTERN=*.log
+
+   volumes:
+     shared-logs:
