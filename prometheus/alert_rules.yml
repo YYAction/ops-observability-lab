@@ -1,1 +1,19 @@
-groups: []
+groups:
+  - name: logscan_alerts
+    rules:
+      - alert: LogErrorSpike
+        expr: increase(logscan_scan_alerts_total[5m]) > 5
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Log error count spike detected"
+          description: "Error count increased by {{ $value }} in the last 5 minutes"
+
+      - alert: ExporterDown
+        expr: up{job="log-exporter"} == 0
+        for: 30s
+        labels:
+          severity: critical
+        annotations:
+          summary: "Log exporter is unreachable"

@@ -33,6 +33,13 @@
       volumes:
         - ./grafana/provisioning:/etc/grafana/provisioning
 
+     alertmanager:
+        image: prom/alertmanager:latest
+        ports:
+          - "9093:9093"
+        volumes:
+          - ./alertmanager/alertmanager.yml:/etc/alertmanager/alertmanager.yml  
+    
    volumes:
      shared-logs:
 
