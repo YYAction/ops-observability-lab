@@ -1,0 +1,52 @@
+{
+  "title": "Log Scan Exporter",
+  "uid": "logscan-dashboard",
+  "timezone": "browser",
+  "refresh": "10s",
+  "time": {
+    "from": "now-1h",
+    "to": "now"
+  },
+  "panels": [
+    {
+      "id": 1,
+      "title": "Alerts Total",
+      "type": "timeseries",
+      "gridPos": {"h": 8, "w": 8, "x": 0, "y": 0},
+      "targets": [
+        {
+          "expr": "logscan_scan_alerts_total",
+          "refId": "A"
+        }
+      ],
+      "datasource": {"type": "prometheus", "uid": "prometheus"}
+    },
+    {
+      "id": 2,
+      "title": "Alert Rate (5m)",
+      "type": "timeseries",
+      "gridPos": {"h": 8, "w": 8, "x": 8, "y": 0},
+      "targets": [
+        {
+          "expr": "rate(logscan_scan_alerts_total[5m])",
+          "refId": "A"
+        }
+      ],
+      "datasource": {"type": "prometheus", "uid": "prometheus"}
+    },
+    {
+      "id": 3,
+      "title": "Lines Scanned",
+      "type": "timeseries",
+      "gridPos": {"h": 8, "w": 8, "x": 16, "y": 0},
+      "targets": [
+        {
+          "expr": "logscan_scan_lines_scanned",
+          "refId": "A"
+        }
+      ],
+      "datasource": {"type": "prometheus", "uid": "prometheus"}
+    }
+  ],
+  "schemaVersion": 39
+}
