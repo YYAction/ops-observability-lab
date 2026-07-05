@@ -1,10 +1,22 @@
-# tests/test_log_scan.py
-from log_scan import scan_lines  # 或者你的函数名
+from pathlib import Path
+
+from log_scan import LogLine, scan_lines
 
 def test_scan_finds_errors():
-    lines = ["ERROR database timeout", "INFO normal"]
-    # 根据你 scan_lines 的实际返回值写断言
+    lines = [
+        LogLine(Path("app.log"), 1, "ERROR database timeout"),
+        LogLine(Path("app.log"), 2, "INFO normal"),
+    ]
+
+    counter, hits = scan_lines(lines, ["ERROR"], case_sensitive=False)
+
+    assert counter["ERROR"] == 1
+    assert len(hits) == 1
+    assert hits[0][0].text == "ERROR database timeout"
+    assert hits[0][1] == ["ERROR"]
 
 def test_scan_empty_input():
-    result = scan_lines([])
-    # 验证空输入不报错
+    counter, hits = scan_lines([], ["ERROR"], case_sensitive=False)
+
+    assert counter["ERROR"] == 0
+    assert hits == []

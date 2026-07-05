@@ -23,7 +23,7 @@ jobs:
         run: flake8 --max-line-length=120 *.py
 
       - name: Test
-        run: pytest tests/ -v
+        run: python -m pytest tests/ -v
 
   docker-build:
     runs-on: ubuntu-latest
