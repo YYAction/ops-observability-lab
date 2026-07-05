@@ -17,7 +17,6 @@ from __future__ import annotations
 
 import argparse
 import glob
-import os
 import sys
 from collections import Counter, deque
 from dataclasses import dataclass
