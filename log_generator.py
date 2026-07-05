@@ -1,7 +1,10 @@
 """
 Every few seconds, append a log line to simulate a running service.
 """
-import time, random, datetime, os
+import time
+import random
+import datetime
+import os
 
 LOG_DIR = os.environ.get("LOG_DIR", "./sample-logs")
 LOG_FILE = os.path.join(LOG_DIR, "app.log")

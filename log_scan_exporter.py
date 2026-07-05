@@ -9,7 +9,6 @@ log_scan_exporter.py
 
 import os
 import time
-import threading
 
 from prometheus_client import start_http_server, Gauge, Counter
 from log_scan import find_log_files, collect_recent_lines, scan_lines
