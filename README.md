@@ -26,6 +26,21 @@ Prometheus (:9090)
               receives firing alerts from Prometheus
 ```
 
+
+
+
+
+```mermaid
+      graph LR
+     A[Log Generator] -->|writes| B[Log File]
+     B -->|reads| C[Log Scan Exporter]
+     C -->|/metrics| D[Prometheus]
+     D -->|query| E[Grafana]
+     D -->|alert| F[Alertmanager]
+```
+
+
+     
 ## Quick Start
 
 ```bash
